@@ -1,0 +1,19 @@
+CREATE DATABASE pdemia_tut CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+-- logs table used to track pages requested
+CREATE TABLE `logs` (`id` int unsigned AUTO_INCREMENT PRIMARY KEY) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `logs` ADD `name` varchar(100) CHARACTER SET utf8 NOT NULL;
+ALTER TABLE `logs` ADD `page` varchar(100) CHARACTER SET utf8 NOT NULL;
+ALTER TABLE `logs` ADD `tstp` timestamp DEFAULT CURRENT_TIMESTAMP;
+
+-- for accounts and users
+CREATE TABLE `account` (`id` int unsigned AUTO_INCREMENT PRIMARY KEY) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `account` ADD `name` varchar(100) CHARACTER SET utf8 NOT NULL;
+ALTER TABLE `account` ADD `email` varchar(100) NOT NULL UNIQUE;
+ALTER TABLE `account` ADD `password` varchar(100) NOT NULL;
+ALTER TABLE `account` ADD `salt` varchar(100) NOT NULL;
+ALTER TABLE `account` ADD `tstp` timestamp DEFAULT CURRENT_TIMESTAMP;
+
+INSERT INTO account(name,email,password) VALUES("test","test","test");
+INSERT INTO account(name,email,password) VALUES("pdemia","pdemia@pdemia.com","pdemia");
