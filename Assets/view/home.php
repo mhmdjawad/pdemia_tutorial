@@ -1,6 +1,4 @@
-<h1>Coding Lecture 1 MVC Magic</h1>
-<ul>
-    <li> htaccess </li>
-    <li> php controller and dispatching </li>
-    <li> connecting to database </li>
-</ul>
+
+<button type="button" class="btn btn-success" onclick="SYS.XHRFct('register','CT1');">login</button>
+<button type="button" class="btn btn-success" onclick="SYS.XHRFct('login','CT1');">login</button>
+<div id="CT1"></div>

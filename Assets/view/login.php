@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="buttons">
-        <button type="button" to="CT1" class="btn btn-success" onclick="SYS.login(this);" > Login </button>
-        <div id="CT1" class="CT1"></div>
+        <button type="button" to="CT<?= time() ?>" class="btn btn-success" onclick="SYS.login(this);" > Login </button>
+        <div id="CT<?= time() ?>" class="CT1"></div>
     </div>
 </form>

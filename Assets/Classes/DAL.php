@@ -204,19 +204,19 @@ class DAL{
         $d = $d[0];
         return self::getFormForTable($t,$d);
     }
-    public static function getFormForTable($t,$d = null){
+    public static function getFormForTable($t,$d = null, $hidecols = []){
         $html = '<form action="" method="post" class="DALForm">';
         $fs = self::call_sp("describe $t");
         $html .= '<input type="hidden" name="key" value="profile/DBSave" >';
         $html .= '<input type="hidden" name="table" value="'.$t.'" >';
-        
         foreach($fs as $fld){
             $F = $fld['Field'];
+            if(in_array($F,$hidecols)) continue;
             if($F == "id"){
                 if(!isset($d[$F])) continue;
                 $html .= '<input type="hidden" name="'.$F.'" value="'.$d[$F].'" class="form-control">';
             }
-            elseif($F == "pw"){
+            elseif(strpos($F,"password") > -1){
                 $html .= '<div class="form-group row">
                     <label class="col-sm-2 col-form-label">'.$F.'</label>
                     <div class="col-sm-10"><input type="password" name="'.$F.'" value="'.( (isset($d[$F])) ? $d[$F] : '' ).'" class="form-control"></div>
@@ -262,6 +262,12 @@ class DAL{
         else{
             return $q[$t];
         }
+    }
+
+    public static function columnAlias($c){
+        $v = [];
+        $v['name'] = "name";
+        return (isset($v[$c])) ? $v[$c] :$c;
     }
     //get Data Access Layer Table
     public static function getDALT($t,$id=null){

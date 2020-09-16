@@ -17,3 +17,16 @@ ALTER TABLE `account` ADD `tstp` timestamp DEFAULT CURRENT_TIMESTAMP;
 
 INSERT INTO account(name,email,password) VALUES("test","test","test");
 INSERT INTO account(name,email,password) VALUES("pdemia","pdemia@pdemia.com","pdemia");
+
+
+
+
+CREATE TABLE `tourism_sites` (`id` int unsigned AUTO_INCREMENT PRIMARY KEY) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ALTER TABLE `tourism_sites` ADD `name` varchar(100) CHARACTER SET utf8 NOT NULL;
+ALTER TABLE `tourism_sites` ADD `image` varchar(100) ;
+ALTER TABLE `tourism_sites` ADD `description` TEXT ;
+
+
+INSERT INTO tourism_sites(name,image,description) VALUES("site1","pdemia.svg","site1 desc");
+INSERT INTO tourism_sites(name,image,description) VALUES("site2","pdemia.svg","site2 desc");
+INSERT INTO tourism_sites(name,image,description) VALUES("site3","pdemia.svg","site3 desc");

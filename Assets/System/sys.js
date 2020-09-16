@@ -64,4 +64,112 @@ class SYS{
         }
         $.ajax(cfg);
     }
+    static XHRForm(that){
+        let fd = new FormData($(that).parents('form')[0]);
+        SYS.xhr_post(null,fd,"text",$(that).attr('to'),function(r,o){
+            $(`#${o}`).html(r);
+        });
+    }
+    static XHRFct(fct,to){
+        let fd = new FormData();
+        fd.append("fct",fct);
+        SYS.xhr_post(null,fd,"text",to,function(r,o){
+            $(`#${o}`).html(r);
+        });
+    }
+    static xhr_post(_url,_data,_type,OutContainer,_success,_error =null){
+        if(_url == null){
+            _url = BASE_DIR ;
+        }
+        this.OutContainer = OutContainer;
+        if(OutContainer == null) OutContainer="CT1";
+        if(OutContainer == "no") OutContainer=null;
+        if(OutContainer != null){
+            var t = document.getElementById(OutContainer);
+            if(document.getElementById(OutContainer) == null){
+                t = document.createElement('div');
+                t.id = OutContainer;
+                document.body.appendChild(t);
+            }
+            document.getElementById(OutContainer).innerHTML = "Loading ...";
+            document.getElementById(OutContainer).style.display = "block";
+        }
+        //console.log(`to url ${_url}`);
+        //console.log(`method ${_type}`);
+        let cfg = {
+            url: _url,
+            type: _type,
+            data: _data,
+            method:"POST",
+            cache: false,
+            contentType: false,
+            processData: false,
+        };
+        //to track the progress of upload
+        cfg.xhr = function(){
+            var xhr = new window.XMLHttpRequest();
+            //Upload progress
+            xhr.upload.addEventListener("progress", function(evt){
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    //Do something with upload progress
+                    //console.log(percentComplete);
+                    percentComplete = percentComplete * 100;
+                    percentComplete = parseInt(percentComplete);
+                    if(OutContainer != null){
+                        document.getElementById(OutContainer).innerHTML = "Uploading ..." + percentComplete + " % " ;
+                    }
+                }
+            }, false);
+            //Download progress
+            xhr.addEventListener("progress", function(evt){
+            if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+                //Do something with download progress
+                //console.log(percentComplete);
+                percentComplete = percentComplete * 100;
+                percentComplete = parseInt(percentComplete);
+                if(OutContainer != null){
+                    document.getElementById(OutContainer).innerHTML = "Downloading ..." + percentComplete + " % " ;
+                }
+            }
+            }, false);
+            return xhr;
+        };
+
+        
+
+        // handle error from xhr
+        cfg.error= function (jqXHR, textStatus) {
+            console.log({ "Error- Status: ": textStatus," jqXHR Status: ": jqXHR.status, " jqXHR Response Text:": jqXHR.responseText });
+            $("#"+OutContainer).html(jqXHR.responseText);
+            
+            if(_error){
+                _error(jqXHR, textStatus);
+            }
+            //redo request if server responded with error
+            if(jqXHR.status == 500 ){
+                //SYS.xhr_post(_url,_data,_type,OutContainer,_success,_error);
+            }
+            else if(jqXHR.status == 419){
+                alert("Session ended, need to refresh page");
+                location = location;
+            }
+        };
+        //success of ajax call
+        cfg.success = function (resp) {
+            try{
+
+                _success(resp,OutContainer);
+            }
+            catch(error){
+                console.log(error);
+                if(OutContainer != null){
+                    $("#"+OutContainer).html(error);
+                }
+            }
+        }
+        $.ajax(cfg);
+        
+    }
 }

@@ -2,6 +2,7 @@
     border-collapse: collapse;
     box-sizing: border-box;
 }
+
 #id1{
     width:100px;
     height:100px;
@@ -33,4 +34,29 @@
 }
 .loginForm .btn{
     margin:10px;
+}
+.site_container{
+    /*border:1px solid black;*/
+    padding:30px;
+}
+.site_container h2{
+    background:#0db2b2;
+    color:#fff;
+    text-align:center;
+    margin:none;
+}
+.site_container img{
+    width:100%;
+}
+.site_container p{
+    background:#fff;
+    font-weight:bold;
+    padding:10px;
+}
+
+.RegisterFormContaienr{
+    padding:40px;
+    width:auto;
+    background:#83b8ff;
+    border-radius:20px;
 }
