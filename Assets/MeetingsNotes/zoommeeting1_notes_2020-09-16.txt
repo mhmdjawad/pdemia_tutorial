@@ -1,0 +1,102 @@
+
+
+Questions asked
+1- can we use wordpress
+   yes, based on dr response
+2- phpmyadmin vs mysql workbench
+	phpmyadmin from browser
+	workbench is a software
+	workbench allow using very big (very big >5mb) sql files
+
+
+
+
+things todo
+1- install needed softwares
+	1-a xampp [Appache PHP MYSQL]
+	1-b vs code 
+		[Integrated Development Env to view and edit codee]
+	1-c git bash [version control]
+	1-d power designer (will be provided my MJZ for those who don't have) [to make cdm and ldm]
+	1-e notepad++ [to view and edit text and code files]
+2- prepare enviroment
+	2-a every software is working
+	2-b first project C:\xampp\htdocs\ 
+	2-c first database
+	2-d run them
+	2-e start trying stuff on your own
+		read samples codes online
+		then implement them on machine
+		and try new stuff
+		a- login page
+		b- register page
+3- use git bash to get repo for pdemia tutorial
+	3-a make it working locally 
+		3-a-i add database
+		3-a-ii configure SELF_DIR to be where the folder is located
+		3-a-iii try using DAL.php
+	3-b try making other forms
+	3-c try making other tables and use them
+	3-d start making custom pages and styles for your site
+		gather images
+		gather contents
+		
+4- things to practice
+
+4-1 html css javascript
+4-2 jquery and bootstrap
+4-3 ajax request
+
+	
+
+stuff done in demo
+
+new page 
+register forms
+updated login to use hashed passowrd not plain
+add new table
+used DAL::call_sp
+used DAL::getDALT
+used DAL::insert
+updated form to allow us to hide columns
+
+
+git config --global user.email "mjzd00@gamil.com"
+git config --global user.name "mhmdjawad"
+
+
+
+download xampp https://www.apachefriends.org/download.html
+downlaod git bash https://git-scm.com/downloads
+downlaod vs code https://code.visualstudio.com/download
+
+
+
+====================================
+useful tip for edit css live in browser localhost
+f12 to view inspect elements
+sources
+files system
+add htdocs\
+approve
+====================================
+
+
+
+
+
+
+notes rtegarding the report
+
+
+chapters scheme
+
+1- introduction
+2- SAD
+3- technologies
+4- implemenation
+5- user manual 
+6- conclusion
+
+
+
